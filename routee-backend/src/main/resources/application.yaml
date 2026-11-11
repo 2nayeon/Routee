@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    include: secret
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/routeedb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            scope:
+              - profile
+              - email
+
+jwt:
+  expiration: 3600000
+
+google:
+  maps:
+    api-key: ${GOOGLE_MAPS_API_KEY}
